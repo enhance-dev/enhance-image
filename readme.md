@@ -5,9 +5,9 @@ This is an initial pass at [the proposed Enhance image component](https://github
 ## Usage
 
 ### Attributes
-
-| - | - |
-| src | The path of your image, relative to the `public` directory |
+| Name | Value |
+|---|---|
+| src | The path of your source image, relative to the `public` directory |
 | alt | The alternative text for the image |
 | defaultwidth | The default width for your generated image |
 | variant<N> | The media query to render the variant for, and the desired width in pixels for the generated image |
