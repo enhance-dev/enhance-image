@@ -1,14 +1,14 @@
 export default function EnhanceImage({ html, state }) {
   const { attrs } = state
-  const { alt, defaultwidth, src } = attrs
+  const { alt, defaultwidth, src, ...otherAttrs } = attrs
 
   const variants = Object
-    .keys(attrs)
+    .keys(otherAttrs)
     .filter(key => key.startsWith('variant'))
     .reduce((variants, currentVariant) => {
       // Split the current variant attribute's value on the space following the closing media query parenthesis
       const [media, width] = attrs[currentVariant].split(/(?<=\))\s/)
-      return [...variants, { media, width }]
+      return [...variants, { media: media.trim(), width: width.trim() }]
     }, [])
 
   const getOptimizedSrc = width => `/transform/_public/${src}?width=${width}`
