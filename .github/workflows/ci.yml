@@ -24,10 +24,25 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
           registry-url: https://registry.npmjs.org/
 
+      - name: Install dependencies and run tests
+        run: npm it
+
       # Publish to npm
+      - name: Publish alpha to npm
+        if: contains(github.ref, 'alpha')
+        run: npm publish --tag alpha --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish beta to npm
+        if: contains(github.ref, 'beta')
+        run: npm publish --tag beta --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish @RC to npm
         if: contains(github.ref, 'RC')
         run: npm publish --tag RC --access public
