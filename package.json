@@ -1,19 +1,29 @@
 {
   "name": "enhance-image",
-  "version": "0.0.0",
+  "version": "0.0.0-alpha",
   "description": "Single File Component for Enhance designed to make responsive, optimized images easy.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape ./test/**/**.test.mjs | tap-arc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enhance-dev/enhance-image.git"
   },
-  "author": "",
+  "author": "Cole Peters <cole@begin.com>",
+  "keywords": [
+    "enhance",
+    "image"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/enhance-dev/enhance-image/issues"
   },
-  "homepage": "https://github.com/enhance-dev/enhance-image#readme"
+  "homepage": "https://github.com/enhance-dev/enhance-image#readme",
+  "devDependencies": {
+    "@enhance/ssr": "^3.0.9",
+    "tap-arc": "^0.3.5",
+    "tape": "^5.6.1"
+  }
 }
