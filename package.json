@@ -1,5 +1,5 @@
 {
-  "name": "enhance-image",
+  "name": "@enhance/image",
   "version": "0.0.0-alpha",
   "description": "Single File Component for Enhance designed to make responsive, optimized images easy.",
   "type": "module",
