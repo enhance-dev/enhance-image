@@ -9,17 +9,18 @@ export const getVariants = (attrs) => Object
 
 export default function EnhanceImage({ html, state }) {
   const { attrs } = state
-  const { alt, defaultwidth, src, ...otherAttrs } = attrs
+  const { alt, defaultwidth, src, loading, ...otherAttrs } = attrs
 
   const variants = getVariants(otherAttrs)
   const getOptimizedSrc = width => `/transform/_public/${src}?width=${width}`
   const variantsMarkup = variants.map(variant => `<source media='${variant.media}' srcset='${getOptimizedSrc(variant.width)}' />`).join('')
+  const loadingAttr = loading ? `loading='${loading}'` : ''
   
   return html`
     <picture>
       ${variantsMarkup}
       <source srcset='${getOptimizedSrc(defaultwidth)}' />
-      <img src='/_public/${src}' alt='${alt}' />
+      <img src='/_public/${src}' alt='${alt}' ${loadingAttr} />
     </picture>
   `
 }
