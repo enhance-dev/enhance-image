@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./test/**/**.test.mjs | tap-arc"
+    "test": "tape ./test/**/**.test.js | tap-arc"
   },
   "repository": {
     "type": "git",

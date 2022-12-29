@@ -1,7 +1,7 @@
 import enhance from '@enhance/ssr'
 import test from 'tape'
 
-import EnhanceImage from '../index.mjs'
+import EnhanceImage from '../index.js'
 
 function Head() {
   return `

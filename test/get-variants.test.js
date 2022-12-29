@@ -1,6 +1,6 @@
 import test from 'tape'
 
-import { getVariants } from "../index.mjs"
+import { getVariants } from '../index.js'
 
 const attrs = {
   alt: 'Axol',
