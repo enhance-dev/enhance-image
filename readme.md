@@ -9,7 +9,7 @@ An initial pass at [the proposed Enhance image component](https://github.com/enh
 ### Attributes
 | Name | Value |
 |---|---|
-| `src` | The path of your source image, relative to the `public` directory |
+| `src` | The path of your source image; should like start with `/_public/…` |
 | `alt` | The alternative text for the image |
 | `defaultwidth` | The default width for your generated image |
 | `variant<N>` | The media query to render the variant for, and the desired width in pixels for the generated image |
