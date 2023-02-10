@@ -32,16 +32,10 @@ Variants will be rendered as `<source>` elements in the order they are declared 
 
 ## Temporary Installation Instructions
 
-Install dev dependencies:
-
-```bash
-npm i aws-sdk --save-dev
-```
 
 Install plugin and dependencies:
 
 ```bash
-npm i https://github:beginner-corp/begin-image-plugin#new-begin-refactor
 npm i @enhance/image
 ```
 
@@ -49,7 +43,7 @@ Update your `.arc` file to include the image plugin:
 
 ```
 @plugins
-ryanbethel/arc-image-plugin
+enhance/arc-image-plugin
 ```
 
 Create `app/elements/enhance-image.mjs` file with the following contents:

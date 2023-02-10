@@ -1,0 +1,11 @@
+node_modules
+static.json
+sam.json
+sam.yaml
+preferences.arc
+.DS_Store
+.vscode
+tmp
+.enhance
+test/**/package-lock.json
+.env
