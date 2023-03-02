@@ -14,6 +14,7 @@ An initial pass at [the proposed Enhance image component](https://github.com/enh
 | `defaultwidth` | The default width for your generated image |
 | `variant<N>` | The media query to render the variant for, and the desired width in pixels for the generated image |
 | `loading` | Optional loading strategy for the image; either `'lazy'` or `'eager'` (the default option) |
+| `focalpoint` | Optional focal point for the image (default 50% x, 50% y) |
 
 Variants will be rendered as `<source>` elements in the order they are declared on the custom element. The first `source` element with a matching media query is the one that the browser will use, so be careful to enumerate your variants in the correct order.
 
