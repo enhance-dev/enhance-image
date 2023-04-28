@@ -28,6 +28,6 @@
     "tape": "^5.6.1"
   },
   "dependencies": {
-    "@enhance/arc-image-plugin": "^0.0.4"
+    "@enhance/arc-image-plugin": "^0.0.5"
   }
 }
