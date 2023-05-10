@@ -18,10 +18,12 @@ test('getVariants', t => {
     {
       media: '(min-width: 90em)',
       width: '1200',
+      height: ''
     },
     {
       media: '(min-width: 40em)',
       width: '600',
+      height: ''
     }
   ]
 

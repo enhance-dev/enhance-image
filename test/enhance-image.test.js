@@ -41,7 +41,7 @@ test('enhance-image', t => {
         <picture>
           <source media="(min-width: 90em)" srcset="/transform/width_1200/_public/axol.jpg">
           <source media="(min-width: 40em)" srcset="/transform/width_600/_public/axol.jpg">
-          <source srcset="/transform/width+400/_public/axol.jpg">
+          <source srcset="/transform/width_400/_public/axol.jpg">
           <img src="/_public/axol.jpg" alt="Axol" loading="lazy">
         </picture>
       </enhance-image>
