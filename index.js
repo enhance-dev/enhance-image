@@ -12,13 +12,28 @@ function getXY(focalpoint = "50,50") {
   return focalpoint.split(',')
 }
 
+function paramString({width, height, focalpoint, x, y, mark}) {
+  const params = [`width_${width}`]
+  if (focalpoint && height) {
+    params.push(`height_${height}`)
+    params.push(`fit_cover`)
+    params.push(`focus_point`)
+    params.push(`x_${x}`)
+    params.push(`y_${y}`)
+    if (mark !== undefined) {
+      params.push('mark_true')
+    }
+  }
+  return params.join(`,`)
+}
+
 export default function EnhanceImage({ html, state }) {
   const { attrs } = state
   const { alt, defaultwidth, src, loading, focalpoint, mark, ...otherAttrs } = attrs
 
   const [x, y] = getXY(focalpoint)
   const variants = getVariants(otherAttrs)
-  const getOptimizedSrc = (width, height) => `/transform${src}?width=${width}${focalpoint && height ? `&height=${height}&fit=cover&focus=point&x=${x}&y=${y}${mark !== undefined ? `&mark` : ''}` : ''}`
+  const getOptimizedSrc = (width, height) => `/transform/${paramString({width, height, focalpoint, x, y, mark})}${src}`
   const variantsMarkup = variants.map(variant => `<source media='${variant.media}' srcset='${getOptimizedSrc(variant.width, variant.height)}' />`).join('')
   const loadingAttr = loading ? `loading='${loading}'` : ''
 
