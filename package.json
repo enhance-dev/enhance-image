@@ -1,6 +1,6 @@
 {
   "name": "@enhance/image",
-  "version": "0.0.0-alpha.8",
+  "version": "0.0.0-alpha.9",
   "description": "Single File Component for Enhance designed to make responsive, optimized images easy.",
   "type": "module",
   "main": "index.js",
