@@ -13,10 +13,6 @@ jobs:
   build:
     # Setup
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 16.x, 18.x ]
-        os: ubuntu-latest
 
     # Go
     steps:
