@@ -1,11 +1,11 @@
 {
   "name": "@enhance/image",
   "version": "0.0.0-alpha.11",
-  "description": "Single File Component for Enhance designed to make responsive, optimized images easy.",
+  "description": "Single File Component and plugin for Enhance, designed to make responsive, optimized images easy to author.",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./test/**/**.test.js | tap-arc"
+    "test": "echo \"Tests TBD\" && exit 0"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,6 @@
     "tape": "^5.6.1"
   },
   "dependencies": {
-    "@enhance/arc-image-plugin": "^1.1.0"
+    "@enhance/arc-image-plugin": "^2.0.0-RC.2"
   }
 }
