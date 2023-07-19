@@ -1,12 +1,12 @@
 # enhance-image
 
-Enhance Image is a Single File Component (SFC) for [Enhance](https://enhance.dev) that makes authoring responsive images easy, by providing a simple component API backed by a powerful image transformation and delivery service.
+Enhance Image is a Single File Component (SFC) for [Enhance](https://enhance.dev) that makes authoring responsive images easy, by providing a simple component API backed by an image transformation service.
 
 ## Background
 
-Responsive images are a critical aspect of responsive web design and development. They offer critical performance improvements by delivering appropriately sized images to a range of device resolutions and viewport sizes so that, for example, a mobile phone doesn't waste time and bandwidth downloading an image sized for a widescreen monitor.
+Responsive images are an important aspect of responsive web design and development. They offer major performance improvements by delivering appropriately sized images to a range of device resolutions and viewport sizes so that, for example, a mobile phone doesn't waste time and bandwidth downloading an image sized for a widescreen monitor.
 
-Implementing responsive images, however, can be challenging. Preparing multiple variants of images can be tedious and time consuming, and the web platform APIs for using responsive images in the browser can be tough to wrap your head around. This is where Enhance Image comes in. By combining a simple custom element interface with a powerful on-demand image transformer, it saves time on image preparation and reduces the overhead of implementing responsive images correctly.
+Implementing responsive images, however, can be challenging. Preparing multiple variants of images can be tedious and time consuming, and the web platform APIs for using responsive images in the browser can be tough to wrap your head around. This is where Enhance Image comes in. By combining a simple custom element interface with an on-demand image transformer, it saves time on image preparation and reduces the overhead of implementing responsive images correctly.
 
 ## Usage
 
@@ -28,7 +28,7 @@ This will ensure that Enhance Image's image transformation service will be used 
 
 ### Configuration
 
-The image transformation service works by taking a source image from your project and applying transformations based on size, image format, and image quality (for lossless formats). You can customize these parameters by adding an `@enhance-image` pragma to your project’s `.arc` file. For example:
+The image transformation service works by taking a source image from your project and applying transformations based on size, image format, and image quality. You can customize these parameters by adding an `@enhance-image` pragma to your project’s `.arc` file. For example:
 
 ```.arc
 @enhance-image
@@ -54,7 +54,7 @@ The format option takes one of the following formats: `webp`, `avif`, `jpeg`, `p
 
 #### `quality` (optional)
 
-The quality setting takes a number between 0–100. Generated images will be returned with at the quality level specified. It's best to choose a quality level that results in the smallest possible file size without significant degradation in image quality — this can vary based on the content of the images being processed, and you may need to experiment a bit to find the best setting based on your content. The quality option defaults to 80.
+The quality setting takes a number between 0–100. Generated images will be returned at the quality level specified. It's best to choose a quality level that results in the smallest possible file size without significant degradation in image quality — this can vary based on the content of the images being processed, and you may need to experiment a bit to find the best setting based on your content. The quality option defaults to 80.
 
 ### Single File Component
 
@@ -75,7 +75,7 @@ You can then use the SFC in your pages and other elements, for example:
 
 The SFC accepts a number of attributes, which are:
 
-#### `src` TODO: FORCE IMAGE TO BE IN SPECIFIC DIR FOR PREWARMING, OR JUST FLAG DIR IN .ARC CONFIG?
+#### `src` ⚠️ TODO: FORCE IMAGE TO BE IN SPECIFIC DIR FOR PREWARMING, OR JUST FLAG DIR IN .ARC CONFIG?
 
 The path to the source image in your project. As static assets in Enhance projects are stored in [the public directory](https://enhance.dev/docs/learn/starter-project/public), this path will likely start with `/_public/` (but this is not presumed, so don't forget to include it).
 
@@ -85,9 +85,11 @@ A description of the image. For images that are purely decorative, this can be a
 
 #### `sizes` (optional)
 
-Comma separated list of source size descriptors, plus a fallback value. Each source size descriptor contains a media condition followed by a space and a source size value. The fallback value should not contain a media condition. For example, the value `(min-width: 40em) 1200px, 800px` will inform the browser that for viewports of at least `40em` wide, an image with a width of `1200px` is preferred; for all other viewports, an image with a width of `800px` is preferred. The browser will use this attribute to determine which of your generated images to use for the current media condition.
+Comma separated list of source size descriptors, plus a fallback value. Each source size descriptor contains a media condition followed by a space and a source size value. The fallback value should not contain a media condition. The browser will use this attribute to determine which of your generated images to use for the current media condition.
 
-Note that the width given as a source size value cannot be specified as a %. They can, however, be specified as font relative units (`rem`, `em`, etc.) absolute units (`px`), or the `vw` unit. For further reading, see [MDN’s documentation on the `sizes` attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes), or their [documentation of the `img` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
+For example, the value `(min-width: 40em) 1200px, 800px` will propose that for viewports of at least `40em` wide, an image with a width of at `1200px` is preferred; for all other viewports, an image with a width of `800px` is preferred. 
+
+Note that the widths given for source size values cannot be specified as a percent. They can, however, be specified as font relative units (`rem`, `em`, etc.), absolute units (`px`), or the `vw` unit. For further details, see [MDN’s documentation on the `sizes` attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes), or their [documentation of the `img` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
 
 #### `width` and `height` (optional)
 
