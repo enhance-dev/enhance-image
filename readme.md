@@ -85,7 +85,7 @@ A description of the image. For images that are purely decorative, this can be a
 
 #### `sizes` (optional)
 
-Comma separated list of source size descriptors, plus a fallback value. Each source size descriptor contains a media condition followed by a space and a source size value. The fallback value should not contain a media condition. The browser will use this attribute to determine which of your generated images to use for the current media condition.
+A comma separated list of source size descriptors, plus a fallback value. Each source size descriptor contains a media condition followed by a space and a source size value. The fallback value should not contain a media condition. The browser will use this attribute to determine which of your generated images to use for the current media condition.
 
 For example, the value `(min-width: 40em) 1200px, 800px` will propose that for viewports of at least `40em` wide, an image with a width of at `1200px` is preferred; for all other viewports, an image with a width of `800px` is preferred. 
 
