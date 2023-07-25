@@ -69,8 +69,7 @@ To use the SFC, first import it from the package, and then re-export it to make 
 
 ```js
 // app/elements/enhance-image.mjs
-import EnhanceImage from '@enhance/image'
-export default EnhanceImage
+export default EnhanceImage from '@enhance/image'
 ```
 
 You can then use the SFC in your pages and other elements, for example:
