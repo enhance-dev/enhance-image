@@ -1,6 +1,6 @@
 {
   "name": "@enhance/image",
-  "version": "1.0.0-RC.7",
+  "version": "1.0.0-RC.8",
   "description": "Single File Component and plugin for Enhance, designed to make responsive, optimized images easy to author.",
   "main": "index.mjs",
   "type": "module",
