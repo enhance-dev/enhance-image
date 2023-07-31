@@ -53,11 +53,11 @@ In more detail:
 
 #### `widths` (optional)
 
-The `widths` option takes an array of unitless integers (one per new line, indented by two spaces). A variant of your source image will be generated for every width specified, with a height corresponding to the source image's intrinsic aspect ratio. The image transformation service will *not* enlarge images, so a source image that is smaller than a specified width will be returned at its maximum instinsic width. The default widths are 2400, 1200, and 800.
+The `widths` option takes an array of unitless integers. A variant of your source image will be generated for every width specified, with a height corresponding to the source image's intrinsic aspect ratio. The image transformation service will *not* enlarge images, so a source image that is smaller than a specified width will be returned at its maximum instinsic width. The default widths are 2400, 1200, and 800.
 
 #### `format` (optional)
 
-The format option takes one of the following formats: `webp`, `avif`, `jpeg`, `png`, or `gif`. Generated images will be returned in the given format. `webp` is recommended for compatibility and performance, and is the default option. [Read more about image formats on the web here.](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types)
+The format option takes one of the following format strings: `webp`, `avif`, `jpeg`, `png`, or `gif`. Generated images will be returned in the given format. `webp` is recommended for compatibility and performance, and is the default option. [Read more about image formats on the web here.](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types)
 
 #### `quality` (optional)
 
