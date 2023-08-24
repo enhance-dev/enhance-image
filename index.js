@@ -13,7 +13,7 @@ function getXY(focalpoint = "50,50") {
 }
 
 function paramString({width, height, focalpoint, format, x, y, mark}) {
-  const params = [`${format ? `format_${format}.` : ''}width_${width}`]
+  const params = [`${format ? `format_${format},` : ''}width_${width}`]
   if (focalpoint && height) {
     params.push(`height_${height}`)
     params.push(`fit_cover`)
