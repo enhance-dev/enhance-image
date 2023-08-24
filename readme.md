@@ -15,6 +15,7 @@ An initial pass at [the proposed Enhance image component](https://github.com/enh
 | `variant<N>` | The media query to render the variant for, and the desired width/height in pixels for the generated image |
 | `loading` | Optional loading strategy for the image; either `'lazy'` or `'eager'` (the default option) |
 | `focalpoint` | Optional focal point for the image (default 50% x, 50% y) |
+| `format` | Optional return format for the image. Can be set to a value of jpeg, webp, png, gif, or avif ( default is the same as original image ) |
 | `mark` | Optional adds a crosshair to the image so you can visually see your focal point |
 
 Variants will be rendered as `<source>` elements in the order they are declared on the custom element. The first `source` element with a matching media query is the one that the browser will use, so be careful to enumerate your variants in the correct order.
@@ -29,6 +30,7 @@ Variants will be rendered as `<source>` elements in the order they are declared 
   variant1='(min-width: 90em) 1200'
   variant2='(min-width: 40em) 600'
   loading='lazy'
+  format='webp'
 ></enhance-image>
 ```
 
