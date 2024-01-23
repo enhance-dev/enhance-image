@@ -1,6 +1,6 @@
 # enhance-image
 
-Enhance Image is a Single File Component (SFC) for [Enhance](https://enhance.dev) that makes authoring responsive images easy, by providing a simple component API backed by an image transformation service.
+Enhance Image is a Single File Component (SFC) for [Enhance](https://enhance.dev) that makes authoring responsive images easy, by providing a simple component API backed by an on-demand image transformation service.
 
 ## Background
 
@@ -168,6 +168,10 @@ export default async function Preflight ({ req }) {
 - Each source image will be available in widths of 1200px, 1024px, 720px, 480px, and 375px
 - Each generated image will be formatted at 75% quality; as no `format` option has been specified, the default format (webp) will be used
 - At viewports at least 96em wide, the generated image closest to 1200px in width will be used; at viewports between 48–95.9em wide, the generated image closest to 1000px in width will be used; at viewports narrower than 48em, the image closest to the width of the current viewport will be used
+
+## Usage notes
+
+You may notice a delay in loading a transformed image the first time it’s requested by your browser. This delay should only occur with the first request; subsequent requests should be cached and thus load much faster. We’re actively working on improving performance for image loading — see the roadmap below.
 
 ## Roadmap
 
