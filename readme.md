@@ -2,6 +2,15 @@
 
 Enhance Image is a Single File Component (SFC) for [Enhance](https://enhance.dev) that makes authoring responsive images easy, by providing a simple component API backed by an on-demand image transformation service.
 
+- [Background](#background)
+- [Usage](#usage)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Single File Component](#single-file-component)
+- [Examples](#examples)
+- [Usage notes](#usage-notes)
+- [Roadmap](#roadmap)
+
 ## Background
 
 Responsive images are an important aspect of responsive web design and development. They offer major performance improvements by delivering appropriately sized images to a range of device resolutions and viewport sizes so that, for example, a mobile phone doesn't waste time and bandwidth downloading an image sized for a widescreen monitor.
