@@ -37,7 +37,7 @@ Settings for these configuration options can be specified in [your project's Pre
 export default async function Preflight ({ req }) {
   return {
     plugins: {
-      "@enhance/image": {
+      '@enhance/image': {
         widths: [2400, 1200, 800],
         format: 'webp',
         quality: 80,
@@ -78,7 +78,7 @@ You can then use the SFC in your pages and other elements, for example:
 
 ```html
 <h1>My Favourite Dog</h1>
-<enhance-image src='/_public/images/dog.jpg' alt='My favourite dog'></enhance-image>
+<enhance-image src="/_public/images/dog.jpg" alt="My favourite dog"></enhance-image>
 ```
 
 The SFC accepts the following attributes:
@@ -111,10 +111,10 @@ Each of these attributes takes a unitless length which should describe the intri
 
 ```html
 <enhance-image
-  src='/_public/images/dog.jpg'
-  alt='My favourite dog'
-  width='3000'
-  height='2000'
+  src="/_public/images/dog.jpg"
+  alt="My favourite dog"
+  width="3000"
+  height="2000"
 ></enhance-image>
 ```
 
@@ -128,11 +128,11 @@ Using only the required attributes, and presuming no custom configuration has be
 ### Providing `sizes`
 ```html
 <enhance-image
-  src='/_public/images/dog.jpg'
-  alt='My favourite dog'
-  width='3000'
-  height='2000'
-  sizes='(min-width: 48em) 920px, 100vw'
+  src="/_public/images/dog.jpg"
+  alt="My favourite dog"
+  width="3000"
+  height="2000"
+  sizes="(min-width: 48em) 920px, 100vw"
 ></enhance-image>
 ```
 
@@ -140,12 +140,12 @@ Again presuming the default configuration is being used in this example, the bro
 
 ### Custom configuration
 
-```javsascript
+```javascript
 // app/preflight.mjs
 export default async function Preflight ({ req }) {
   return {
     plugins: {
-      "@enhance/image": {
+      '@enhance/image': {
         widths: [1280, 1024, 720, 480, 375],
         quality: 75,
       }
@@ -156,11 +156,11 @@ export default async function Preflight ({ req }) {
 
 ```html
 <enhance-image
-  src='/_public/images/post-assets/dog.jpg'
-  alt='My favourite dog'
-  width='3000'
-  height='2000'
-  sizes='(min-width: 96em) 1200px, (min-width: 48em) 1000px, 100vw'
+  src="/_public/images/post-assets/dog.jpg"
+  alt="My favourite dog"
+  width="3000"
+  height="2000"
+  sizes="(min-width: 96em) 1200px, (min-width: 48em) 1000px, 100vw"
 ></enhance-image>
 ```
 
