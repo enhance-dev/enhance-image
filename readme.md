@@ -28,26 +28,28 @@ This will ensure that Enhance Image's image transformation service will be used 
 
 ### Configuration
 
-The image transformation service works by taking a source image from your project and applying transformations based on size, image format, and image quality. It will also generate image transformations ahead of runtime for any bitmap image stored in a given directory, so that this task is completed before these images are requested by a user’s brower.
+The image transformation service works by taking a source image from your project and applying transformations based on size, image format, and image quality.
 
-Settings for these configuration options can be specified in your project's `enhance.json`, under the `plugins` key. For example:
+Settings for these configuration options can be specified in [your project's Preflight file](https://enhance.dev/docs/conventions/preflight), under the `plugins` key. For example:
 
-```json
-{
-  "plugins": {
-    "@enhance/image": {
-      "widths": [2400, 1200, 800],
-      "format": "webp",
-      "quality": 80,
-      "directory": "public/images"
+```javascript
+// app/preflight.mjs
+export default async function Preflight ({ req }) {
+  return {
+    plugins: {
+      "@enhance/image": {
+        widths: [2400, 1200, 800],
+        format: 'webp',
+        quality: 80,
+      }
     }
   }
 }
 ```
 
-The above configuration will tell the image transformation service that, for every source image passed to the Enhance Image component, it should generate three variants: one at 2400px wide, one at 1200px wide, and one at 800px wide (while preserving your images' intrinsic aspect ratios). Each of those variants will be generated in the webp format, at a quality setting of 80%. Additionally, any source images stored in `public/images` (or any directory within that directory) will have these transformations generated ahead of runtime.
+The above configuration will tell the image transformation service that, for every source image passed to the Enhance Image component, it should generate three variants: one at 2400px wide, one at 1200px wide, and one at 800px wide (while preserving your images' intrinsic aspect ratios). Each of those variants will be generated in the webp format, at a quality setting of 80%.
 
-(Coincidentally, the above configuration is the default for the image transformation service, and may be omitted if this works well enough for you.)
+(Coincidentally, the above configuration is the default for the image transformation service, and may be omitted from your Preflight file if this works well enough for you.)
 
 In more detail:
 
@@ -62,18 +64,6 @@ The format option takes one of the following format strings: `webp`, `avif`, `jp
 #### `quality` (optional)
 
 The quality setting takes a number between 0–100. Generated images will be returned at the quality level specified. It's best to choose a quality level that results in the smallest possible file size without significant degradation in image quality — this can vary based on the content of the images being processed, and you may need to experiment a bit to find the best setting based on your content. The quality option defaults to 80.
-
-#### `directory` (optional)
-
-The directory option specifies where your source images are stored within your project. The image transformation service will recursively scan this directory for bitmap images so that it can generate the image transformations and cache them ahead of runtime, thus increasing image rendering performance. Images passed to the Enhance Image component from outside the specified directory will not be transformed ahead of runtime. The directory specified here should be stored within [your project’s public directory](https://enhance.dev/docs/learn/starter-project/public). The default value is `public/images`.
-
-#### Using a separate configuration file
-If you'd prefer to use a dedicated configuration file for Enhance Image (instead of `enhance.json`), you can do so by writing an `@enhance/image` pragma in your `.arc` file, and specifying the configuration file with the `config` key. For example:
-
-```arc
-@enhance/image
-config enhance-image.json
-```
 
 ### Single File Component
 
@@ -150,13 +140,15 @@ Again presuming the default configuration is being used in this example, the bro
 
 ### Custom configuration
 
-```json
-{
-  "plugins": {
-    "@enhance/image": {
-      "widths": [1280, 1024, 720, 480, 375],
-      "quality": 75,
-      "directory": "public/images/post-assets"
+```javsascript
+// app/preflight.mjs
+export default async function Preflight ({ req }) {
+  return {
+    plugins: {
+      "@enhance/image": {
+        widths: [1280, 1024, 720, 480, 375],
+        quality: 75,
+      }
     }
   }
 }
@@ -176,4 +168,11 @@ Again presuming the default configuration is being used in this example, the bro
 - Each source image will be available in widths of 1200px, 1024px, 720px, 480px, and 375px
 - Each generated image will be formatted at 75% quality; as no `format` option has been specified, the default format (webp) will be used
 - At viewports at least 96em wide, the generated image closest to 1200px in width will be used; at viewports between 48–95.9em wide, the generated image closest to 1000px in width will be used; at viewports narrower than 48em, the image closest to the width of the current viewport will be used
+
+## Roadmap
+
+The following updates are either planned or currently in active development:
+
+- Update the image transformation service to pregenerate image transformations ahead of runtime to improve performance
+- Private bucket support
 
