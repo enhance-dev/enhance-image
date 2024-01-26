@@ -47,9 +47,11 @@ export default async function Preflight ({ req }) {
   return {
     plugins: {
       '@enhance/image': {
-        widths: [2400, 1200, 800],
-        format: 'webp',
-        quality: 80,
+        transform: {
+          widths: [2400, 1200, 800],
+          format: 'webp',
+          quality: 80,
+        },
       }
     }
   }
@@ -155,13 +157,18 @@ export default async function Preflight ({ req }) {
   return {
     plugins: {
       '@enhance/image': {
-        widths: [1280, 1024, 720, 480, 375],
-        quality: 75,
+        transform: {
+          widths: [1280, 1024, 720, 480, 375],
+          quality: 75,
+        }
       }
     }
   }
 }
 ```
+
+- Each source image will be available in widths of 1200px, 1024px, 720px, 480px, and 375px
+- Each generated image will be formatted at 75% quality; as no `format` option has been specified, the default format (webp) will be used
 
 ```html
 <enhance-image
@@ -173,9 +180,6 @@ export default async function Preflight ({ req }) {
 ></enhance-image>
 ```
 
-- Bitmap images located in `public/images/post-assets` will be transformed ahead of runtime
-- Each source image will be available in widths of 1200px, 1024px, 720px, 480px, and 375px
-- Each generated image will be formatted at 75% quality; as no `format` option has been specified, the default format (webp) will be used
 - At viewports at least 96em wide, the generated image closest to 1200px in width will be used; at viewports between 48–95.9em wide, the generated image closest to 1000px in width will be used; at viewports narrower than 48em, the image closest to the width of the current viewport will be used
 
 ## Usage notes
@@ -187,5 +191,5 @@ You may notice a delay in loading a transformed image the first time it’s requ
 The following updates are either planned or currently in active development:
 
 - Update the image transformation service to pregenerate image transformations ahead of runtime to improve performance
-- Private bucket support
+- Private S3 bucket support
 
