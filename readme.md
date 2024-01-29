@@ -33,13 +33,13 @@ Then, add `enhance/arc-image-plugin` to your project’s `.arc` file, under the 
 enhance/arc-image-plugin
 ```
 
-This will ensure that Enhance Image's image transformation service will be used in combination with the Enhance Image component.
+This enables Enhance Image’s image transformation service (which is used by the component).
 
 ### Configuration
 
 The image transformation service works by taking a source image from your project and applying transformations based on size, image format, and image quality.
 
-Settings for these configuration options can be specified in [your project's Preflight file](https://enhance.dev/docs/conventions/preflight), under the `plugins` key. For example:
+These configuration options can be specified in [your project's Preflight file](https://enhance.dev/docs/conventions/preflight), under the `plugins` key. For example:
 
 ```javascript
 // app/preflight.mjs
@@ -66,7 +66,7 @@ In more detail:
 
 #### `widths` (optional)
 
-The `widths` option takes an array of unitless integers. A variant of your source image will be generated for every width specified, with a height corresponding to the source image's intrinsic aspect ratio. The image transformation service will *not* enlarge images, so a source image that is smaller than a specified width will be returned at its maximum instinsic width. The default widths are 2400, 1200, and 800.
+The `widths` option takes an array of pixel widths, specified as unitless integers. A variant of your source image will be generated for every width specified, with a height corresponding to the source image's intrinsic aspect ratio. The default widths are 2400, 1200, and 800.
 
 #### `format` (optional)
 
@@ -82,7 +82,8 @@ To use the SFC, first import it from the package, and then re-export it to make 
 
 ```js
 // app/elements/enhance-image.mjs
-export default EnhanceImage from '@enhance/image'
+import EnhanceImage from '@enhance/image'
+export default EnhanceImage
 ```
 
 You can then use the SFC in your pages and other elements, for example:
@@ -106,11 +107,17 @@ A description of the image. For images that are purely decorative, this can be a
 
 A comma separated list of source size descriptors, plus a fallback value. Each source size descriptor contains a media condition followed by a space and a source size value. The fallback value should not contain a media condition. The browser will use this attribute to determine which of your generated images to use for the current media condition. 
 
-For example, the value `(min-width: 40em) 1200px, 800px` will propose that for viewports of at least 40em wide, an image with a width of at 1200px is preferred; for all other viewports, an image with a width of 800px is preferred. 
+For example, the value `(min-width: 40em) 1200px, 800px` will propose that for viewports of at least 40em wide, an image with a width of at least 1200px is preferred; for all other viewports, an image with a width of at least 800px is preferred.
 
-Note that the widths given for source size values cannot be specified as a percent. They can, however, be specified as font relative units (`rem`, `em`, etc.), absolute units (`px`), or the `vw` unit. For further details, see [MDN’s documentation on the `sizes` attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes), or their [documentation of the `img` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
+There are a few caveats to keep in mind when using the `sizes` attribute:
 
-The default value is `100vw`, which will propose that the browser choose an image size that will best fit the full width of the current viewport.
+- The first matching media condition that matches the viewport will be used, and all others will be ignored. Therefore, if using `min-width` media queries, these should be written in descending order, e.g. `(min-width: 72em) 1000px, (min-width: 48em) 500px`. `max-width` media queries should be written in ascending order.
+- The viewport’s pixel density also factors into the browser’s image selection process. For high density displays, the browser may select a larger image than specified in the `sizes` array if the specified size would not be of a sufficient size to display in high quality for a given viewport and display.
+- The widths given for source size values cannot be specified as a percent. They can, however, be specified as font relative units (`rem`, `em`, etc.), absolute units (`px`), or the `vw` unit.
+
+For further details, see [MDN’s documentation on the `sizes` attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes), or their [documentation of the `img` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
+
+The default value for the `sizes` attribute is `100vw`, which will propose that the browser choose an image size that will best fit the full width of the current viewport.
 
 #### `width` and `height` (optional)
 
