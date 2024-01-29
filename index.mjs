@@ -9,11 +9,12 @@ export default function EnhanceImage({ html, state }) {
   } = attrs
   const { plugins = {} } = store
   const { '@enhance/image': imageConfig = {} } = plugins
-  const { transform = {
-    widths: [2400, 1200, 800],
-    format: 'webp',
-    quality: 80,
-  } } = imageConfig
+  const { transform = {} } = imageConfig
+  const {
+    widths = [2400, 1200, 800],
+    format = 'webp',
+    quality = 80,
+  } = transform
 
   const loadingStrategy = Object.keys(attrs).includes('priority') ? 'fetchpriority="high"' : 'loading="lazy"'
 
@@ -39,7 +40,6 @@ export default function EnhanceImage({ html, state }) {
   }
 
   // Generate a srcset for the source image using the image config
-  const { widths, format, quality } = transform
   const srcset = widths.map(width => {
     return `${formatPath({
       src,
@@ -57,15 +57,14 @@ export default function EnhanceImage({ html, state }) {
       }
     </style>
     <img
-      alt='${alt}'
-      src='${src}'
       srcset='${srcset}'
       sizes='${sizes}'
+      src='${src}'
+      alt='${alt}'
       width='${width}'
       height='${height}'
       ${loadingStrategy}
     />
   `
 }
-
 
