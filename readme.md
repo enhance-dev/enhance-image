@@ -191,7 +191,7 @@ export default async function Preflight ({ req }) {
 
 ### `sizes` attribute
 
-The `sizes` attribute used by Enhance Image is simply a proxy for [`HTMLImageElement.sizes`]. This `sizes` attribute, as specified by [the HTML living standard](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-sizes), can be tough to wrap your head around in certain cases. 
+The `sizes` attribute used by Enhance Image is simply a proxy for [`HTMLImageElement.sizes`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes). This `sizes` attribute, as specified by [the HTML living standard](https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-sizes), can be tough to wrap your head around in certain cases. 
 
 Below are several considerations to keep in mind when using `sizes`.
 
