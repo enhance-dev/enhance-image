@@ -72,7 +72,7 @@ The `widths` option takes an array of pixel widths, specified as unitless intege
 
 #### `format` (optional)
 
-The format option takes one of the following format strings: `webp`, `avif`, `jpeg`, `png`, or `gif`. Generated images will be returned in the given format. `webp` is recommended for compatibility and performance, and is the default option. [Read more about image formats on the web here.](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types)
+The format option takes one of the following format strings: `webp`, `avif`, `jxl`, `jpeg`, `png`, or `gif`. Generated images will be returned in the given format. `webp` is recommended for compatibility and performance, and is the default option. [Read more about image formats on the web here.](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types)
 
 #### `quality` (optional)
 
@@ -128,6 +128,14 @@ The `sizes` attribute has a default value of `100vw`.
 
 Each of these attributes takes a unitless length which describes the intrinsic (not the rendered) width and height of your source image. The browser will use this to compute the aspect ratio of your image, which will help to avoid [Cumulative Layout Shift](https://web.dev/cls/). These properties can also be set via CSS; note that if they are specified as HTML attributes, any CSS styles targeting your images’ width and height will override those attributes.
 
+#### `loading` (optional)
+
+A string of either `'eager'` or `'lazy'`. Using the `'lazy'` value will instruct the browser to defer loading the image until it determines it will be needed. The default value, as per the HTML image element spec, is `'eager'` (which will instruct the browser to load the image source as soon as the image element is processed). [Read further on MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading).
+
+#### `fetchpriority` (optional)
+
+A string of either `'high'`, `'low'`, or `'auto`. Provides a hint to the browser as to the relative priority of fetching an image’s source, relative to other images. The default is `'auto'`.
+
 ## Examples
 
 ### Basic usage
@@ -155,6 +163,18 @@ Using only the required attributes, and presuming no custom configuration has be
 ```
 
 Again presuming the default configuration is being used in this example, the browser will select the generated image closest to 50% of the current viewport width when the viewport is 48em or wider. At viewports narrower than 48em, the image closest to the full width of the current viewport will be used.
+
+### Lazy loading and auto `sizes`
+```html
+<enhance-image
+  src="/_public/images/dog.jpg"
+  alt="My favourite dog"
+  loading="lazy"
+  sizes="auto"
+></enhance-image>
+```
+
+This is a good strategy to use for images that are rendered outside of the initial viewport area of a page. Since loading of the image will be deferred until the browser anticipates the image will be needed, the browser will already understand what size of image will be needed for the given content area, and can thus automatically determine which of your generated images to use.
 
 ### Custom configuration
 

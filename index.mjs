@@ -6,6 +6,8 @@ export default function EnhanceImage({ html, state }) {
     sizes = '100vw',
     height,
     width,
+    loading = 'eager',
+    fetchpriority = 'auto',
   } = attrs
   const { plugins = {} } = store
   const { '@enhance/image': imageConfig = {} } = plugins
@@ -15,8 +17,6 @@ export default function EnhanceImage({ html, state }) {
     format = 'webp',
     quality = 80,
   } = transform
-
-  const loadingStrategy = Object.keys(attrs).includes('priority') ? 'fetchpriority="high"' : 'loading="lazy"'
 
   function formatPath ({
     src,
@@ -57,13 +57,14 @@ export default function EnhanceImage({ html, state }) {
       }
     </style>
     <img
+      loading='${loading}'
+      fetchpriority='${fetchpriority}'
       srcset='${srcset}'
       sizes='${sizes}'
       src='${src}'
       alt='${alt}'
       width='${width}'
       height='${height}'
-      ${loadingStrategy}
     />
   `
 }
