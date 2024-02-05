@@ -25,7 +25,7 @@ Implementing responsive images, however, can be challenging. Preparing multiple 
 
 Install Enhance Image by running the following command in your Enhance project:
 ```shell
-npm install @enhance/image
+npm install @enhance/image@1.0.0-RC.11
 ```
 
 Then, add `enhance/arc-image-plugin` to your project’s `.arc` file, under the `@plugins` pragma:
