@@ -1,3 +1,5 @@
+import defaults from './defaults.mjs'
+
 export default function EnhanceImage({ html, state }) {
   const { attrs, store } = state
   const {
@@ -13,9 +15,9 @@ export default function EnhanceImage({ html, state }) {
   const { '@enhance/image': imageConfig = {} } = plugins
   const { transform = {} } = imageConfig
   const {
-    widths = [2400, 1200, 800],
-    format = 'webp',
-    quality = 80,
+    widths = defaults.widths,
+    format = defaults.format,
+    quality = defaults.quality,
   } = transform
 
   function formatPath ({

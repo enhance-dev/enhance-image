@@ -7,6 +7,9 @@
   "scripts": {
     "test": "echo \"Tests TBD\" && exit 0"
   },
+  "bin": {
+    "warm": "./warm-images.mjs"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enhance-dev/enhance-image.git"
@@ -28,5 +31,9 @@
   },
   "dependencies": {
     "@enhance/arc-image-plugin": "^1.4.0"
+  },
+  "peerDependencies": {
+    "@architect/sandbox": "^6.0.2",
+    "tiny-json-http": "^7.5.1"
   }
 }
