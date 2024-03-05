@@ -29,8 +29,11 @@ async function warmImages(){
   // The directory to scan for image files for prewarming
   const directoryIndex = process.argv.indexOf('--directory')
   let directoryValue
-  if ( directoryIndex > -1 ) { directoryValue = process.argv[directoryIndex + 1] }
-  const directory = directoryValue || '/public/images'
+  if (directoryIndex > -1) directoryValue = process.argv[directoryIndex + 1]
+  if (directoryValue && !directoryValue.startsWith('/public')) {
+    throw new Error('@enhance/image warm: --directory value must start with "/public"')
+  }
+  const directory = directoryValue || '/public'
 
   // 1. Run sandbox to generate static.json — we need this to access the fingerprinted filenames of the images later on
   const baseDir = process.cwd()
@@ -59,8 +62,9 @@ async function warmImages(){
   let config = {}
 
   if (hasPreflight) {
-    const preflight = await import(preflightPath)
-    const { plugins: { '@enhance/image': { transform } } } = preflight
+    const { default: preflight } = await import(preflightPath)
+    const preflightResponse = await preflight({ req: ''})
+    const { plugins: { '@enhance/image': { transform } } } = preflightResponse
     config = transform
   }
 
@@ -71,7 +75,7 @@ async function warmImages(){
   } = config
 
   // 4. Map over `widths` to create transform options for each image in `images`
-  const getVariantPaths = file => widths.map(width => `/transform/width_${width},format_${format},quality_${quality}${file}`)
+  const getVariantPaths = file => widths.map(width => `/transform/width_${width},format_${format},quality_${quality}${path.join(directoryValue.replace('/public', '/_public'), file)}`)
   const variantPaths = images.map(image => getVariantPaths(image)).flat()
 
   // 5. Use static.json to search and replace names in `variantPaths` w/ fingerprinted names
@@ -90,7 +94,7 @@ async function warmImages(){
   }
 
   const variantsWithFingerprints = variantPaths.map(variant => replaceEvery(variant, manifest))
-  console.log(fingerprintedImages.length, " Images found to warm")
+  console.log(variantsWithFingerprints.length, " Images found to warm")
 
   // 6. Use tiny json to request each transformed image in batches
   const target = variantsWithFingerprints.slice()
@@ -107,3 +111,4 @@ async function warmImages(){
 }
 
 warmImages()
+
