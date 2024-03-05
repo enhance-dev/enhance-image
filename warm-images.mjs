@@ -31,7 +31,8 @@ async function warmImages(){
   let directoryValue
   if (directoryIndex > -1) directoryValue = process.argv[directoryIndex + 1]
   if (directoryValue && !directoryValue.startsWith('/public')) {
-    throw new Error('@enhance/image warm: --directory value must start with "/public"')
+    console.error('@enhance/image warm: --directory value must start with "/public"')
+    process.exit(1)
   }
   const directory = directoryValue || '/public'
 
@@ -47,8 +48,9 @@ async function warmImages(){
 
   try {
     directoryContents = fs.readdirSync(directoryPath, { recursive: true })
-  } catch {
-    throw new Error('@enhance/image warm: Directory specified with --directory option can’t be found in your project')
+  } catch (e) {
+    console.error('@enhance/image warm: Directory specified with --directory option can’t be found in your project')
+    throw e
   }
 
   const images = directoryContents.filter(file =>
