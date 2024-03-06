@@ -5,7 +5,7 @@
   "main": "index.mjs",
   "type": "module",
   "scripts": {
-    "test": "echo \"Tests TBD\" && exit 0"
+    "test": "tape ./test/lib.test.mjs | tap-arc"
   },
   "bin": {
     "warm": "./warm-images.mjs"

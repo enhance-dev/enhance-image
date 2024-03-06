@@ -1,4 +1,4 @@
-import defaults from './defaults.mjs'
+import { defaults } from './lib.mjs'
 
 export default function EnhanceImage({ html, state }) {
   const { attrs, store } = state
