@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { warmImages } from './utils.mjs'
+import { warmImages } from './lib.mjs'
 
 function main(){
   // Argument --domain, i.e. http://localhost:3333 
