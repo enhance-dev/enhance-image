@@ -21,10 +21,11 @@ test('getVariantPaths', t => {
   t.end()
 })
 
-// test('warmImages', t => {
-//   t.throws(
-//     () => { warmImages({ directory: '/some/non/existant/directory', domain: 'https://example.org' }) },
-//     'Throws an error if the directory doesn’t exist'
-//   )
-//   t.end()
-// })
+test('warmImages', async t => {
+  try {
+    await warmImages({ directory: '/some/nonexistant/directory', domain: 'https://example.org' })
+    t.fail('should not succeed when passed a nonexistant directory')
+  } catch {
+    t.pass('throws when passed a nonexistant directory')
+  }
+})

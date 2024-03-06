@@ -13,18 +13,32 @@ const imageTypes = [
   '.webp'
 ]
 
+function replaceEvery (str, mapObj) {
+  function escapeRegExp (string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') 
+  }
+  const re = new RegExp(Object.keys(mapObj).map(i => escapeRegExp(i)).join('|'), 'gi')
+
+  return str.replace(re, function (matched) {
+    return mapObj[matched]
+  })
+}
+
+// Used by warmImages and the SFC
 export const defaults = {
   widths: [2400, 1200, 800],
   format: 'webp',
   quality: 80,
 }
 
+// Used by warmImages only; exported for testing
 export const getVariantPaths = ({ directory, image, widths, format, quality }) => {
   return widths.map(width =>
     `/transform/width_${width},format_${format},quality_${quality}${path.join(directory.replace('/public', '/_public'), image)}`
   )
 }
 
+// Function for warming generated image caches
 export async function warmImages({ directory, domain }) {
   // 1. Get image paths from the specified directory (recursive)
   const directoryPath = path.join(process.cwd(), directory)
@@ -72,17 +86,6 @@ export async function warmImages({ directory, domain }) {
   // 5. Use static.json to search and replace names in `variantPaths` w/ fingerprinted names
   const manifestFile = fs.readFileSync(path.join(process.cwd(), 'public','static.json'))
   const manifest = JSON.parse(manifestFile)
-
-  function replaceEvery (str, mapObj) {
-    function escapeRegExp (string) {
-      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') 
-    }
-    const re = new RegExp(Object.keys(mapObj).map(i => escapeRegExp(i)).join('|'), 'gi')
-
-    return str.replace(re, function (matched) {
-      return mapObj[matched]
-    })
-  }
 
   const variantsWithFingerprints = variantPaths.map(variant => replaceEvery(variant, manifest))
   console.log(variantsWithFingerprints.length, " Images found to warm")
