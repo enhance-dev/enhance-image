@@ -1,11 +1,14 @@
 {
   "name": "@enhance/image",
-  "version": "0.0.0-alpha.13",
-  "description": "Single File Component for Enhance designed to make responsive, optimized images easy.",
+  "version": "1.0.0-RC.21",
+  "description": "Single File Component and plugin for Enhance, designed to make responsive images easy.",
+  "main": "index.mjs",
   "type": "module",
-  "main": "index.js",
   "scripts": {
-    "test": "tape ./test/**/**.test.js | tap-arc"
+    "test": "tape ./test/lib.test.mjs | tap-arc"
+  },
+  "bin": {
+    "warm": "./warm-images.mjs"
   },
   "repository": {
     "type": "git",
@@ -23,11 +26,12 @@
   "homepage": "https://github.com/enhance-dev/enhance-image#readme",
   "devDependencies": {
     "@enhance/ssr": "^3.0.9",
-    "aws-sdk": "^2.1313.0",
     "tap-arc": "^0.3.5",
     "tape": "^5.6.1"
   },
   "dependencies": {
-    "@enhance/arc-image-plugin": "^1.1.0"
+    "@architect/sandbox": "^6.0.2",
+    "@enhance/arc-image-plugin": "^1.4.0",
+    "tiny-json-http": "^7.5.1"
   }
 }
