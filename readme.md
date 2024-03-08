@@ -111,8 +111,11 @@ The SFC accepts the following attributes, which are proxies for [the same named 
 
 <dl>
 <dt><code>src</code></dt>
+<dd>
 
 The path to the source image in your project.
+
+</dd>
 
 <dt><code>alt</code></dt>
 <dd>
