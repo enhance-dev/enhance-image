@@ -110,6 +110,7 @@ You can then use the SFC in your pages and other elements, for example:
 The SFC accepts the following attributes, which are proxies for [the same named attributes of the Image element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes):
 
 <dl>
+
 <dt><code>src</code></dt>
 <dd>
 
@@ -185,7 +186,7 @@ The script takes two arguments:
 <dl>
 
 <dt><code>--directory</code></dt>
-<dd class="mbe0">
+<dd>
 
 The path to the directory in your project containing the images you’ll be using with Enhance Image, for which you’d like variants (and caches) generated, e.g. `/public/images`. This path **must start with `/public`**. The directory will be scanned recursively, so only the top most directory needs to be provided.
 
