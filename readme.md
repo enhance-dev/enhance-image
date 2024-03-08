@@ -21,40 +21,11 @@ Implementing responsive images, however, can be challenging. Preparing multiple 
 
 ## Usage
 
-<<<<<<< HEAD
-### Attributes
-| Name | Value |
-|---|---|
-| `src` | The path of your source image; should like start with `/_public/…` |
-| `alt` | The alternative text for the image |
-| `defaultwidth` | The default width for your generated image |
-| `variant<N>` | The media query to render the variant for, and the desired width/height in pixels for the generated image |
-| `loading` | Optional loading strategy for the image; either `'lazy'` or `'eager'` (the default option) |
-| `focalpoint` | Optional focal point for the image (default 50% x, 50% y) |
-| `format` | Optional return format for the image. Can be set to a value of jpeg, webp, png, gif, or avif ( default is the same as original image ) |
-| `mark` | Optional adds a crosshair to the image so you can visually see your focal point |
-
-Variants will be rendered as `<source>` elements in the order they are declared on the custom element. The first `source` element with a matching media query is the one that the browser will use, so be careful to enumerate your variants in the correct order.
-
-### Example
-
-```html
-<enhance-image
-  src='kitten.jpg'
-  alt='A picture of a cuddly li’l kitten'
-  defaultwidth='400'
-  variant1='(min-width: 90em) 1200'
-  variant2='(min-width: 40em) 600'
-  loading='lazy'
-  format='webp'
-></enhance-image>
-=======
 ### Installation
 
 Install Enhance Image by running the following command in your Enhance project:
 ```shell
-npm install @enhance/image@1.0.0-RC.12
->>>>>>> ff7f6e5 (Version 1.0)
+npm install @enhance/image
 ```
 
 Then, add `enhance/arc-image-plugin` to your project’s `.arc` file, under the `@plugins` pragma:
