@@ -7,6 +7,7 @@ Enhance Image is a Single File Component (SFC) for [Enhance](https://enhance.dev
   - [Installation](#installation)
   - [Configuration](#configuration)
   - [Single File Component](#single-file-component)
+- [Cache warming](#cache-warming)
 - [Examples](#examples)
 - [Usage notes](#usage-notes)
   - [`sizes` attribute](#sizes-attribute)
