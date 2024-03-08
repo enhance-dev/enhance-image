@@ -109,6 +109,7 @@ You can then use the SFC in your pages and other elements, for example:
 
 The SFC accepts the following attributes, which are proxies for [the same named attributes of the Image element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes):
 
+<dl>
 <dt><code>src</code></dt>
 
 The path to the source image in your project.
