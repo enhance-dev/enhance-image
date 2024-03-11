@@ -12,6 +12,7 @@ Enhance Image is a Single File Component (SFC) for [Enhance](https://enhance.dev
 - [Usage notes](#usage-notes)
   - [`sizes` attribute](#sizes-attribute)
   - [Performance](#performance)
+- [Walkthrough](#walkthrough)
 - [Roadmap](#roadmap)
 
 ## Background
@@ -325,9 +326,9 @@ For this reason, it’s often advantageous (and makes for a clearer implementati
 
 For further details, see [MDN’s documentation on the `sizes` attribute](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes), or their [documentation of the `img` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
 
-### Performance
+## Walkthrough
 
-You may notice a delay in loading a transformed image the first time it’s requested by your browser. This delay should only occur with the first request; subsequent requests should be cached and thus load much faster. We’re actively working on improving performance for image loading — see the roadmap below.
+We’ve published a full walkthrough for Enhance Image. [Watch the video here](https://www.youtube.com/watch?v=UYfBreIx7W8)!
 
 ## Roadmap
 
